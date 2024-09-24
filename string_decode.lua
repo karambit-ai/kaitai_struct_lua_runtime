@@ -2,7 +2,16 @@
 -- String decoder functions
 --
 
-local utf8 = require("lua-utf8")
+local function safe_require_utf8()
+	local package_exists, module = pcall(require, "lua-utf8")
+	if not package_exists then
+		return require("utf8")
+	else
+		return module
+	end
+end
+
+local utf8 = safe_require_utf8()
 
 local stringdecode = {}
 

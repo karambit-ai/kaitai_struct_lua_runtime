@@ -1,6 +1,9 @@
 # Kaitai Struct: runtime library for Lua
 
-This library implements Kaitai Struct API for Lua 5.3.
+This library implements Kaitai Struct API for LuaJIT/Lua5.1.
+
+> [!NOTE]
+> This fork is specifically made for LuaJIT and luastatic compatibility.
 
 Kaitai Struct is a declarative language used for describe various binary
 data structures, laid out in files or in memory: i.e. binary file
