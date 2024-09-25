@@ -83,15 +83,15 @@ end
 --.............................................................................
 
 function KaitaiStream:read_s2be()
-	return struct.unpack(">i2", self:read_bytes(2))
+	return struct.unpack(">h", self:read_bytes(2))
 end
 
 function KaitaiStream:read_s4be()
-	return struct.unpack(">i4", self:read_bytes(4))
+	return struct.unpack(">i", self:read_bytes(4))
 end
 
 function KaitaiStream:read_s8be()
-	return struct.unpack(">i8", self:read_bytes(8))
+	return struct.unpack(">l", self:read_bytes(8))
 end
 
 --.............................................................................
@@ -99,15 +99,15 @@ end
 --.............................................................................
 
 function KaitaiStream:read_s2le()
-	return struct.unpack("<i2", self:read_bytes(2))
+	return struct.unpack("<h", self:read_bytes(2))
 end
 
 function KaitaiStream:read_s4le()
-	return struct.unpack("<i4", self:read_bytes(4))
+	return struct.unpack("<i", self:read_bytes(4))
 end
 
 function KaitaiStream:read_s8le()
-	return struct.unpack("<i8", self:read_bytes(8))
+	return struct.unpack("<l", self:read_bytes(8))
 end
 
 -------------------------------------------------------------------------------
@@ -123,15 +123,15 @@ end
 --.............................................................................
 
 function KaitaiStream:read_u2be()
-	return struct.unpack(">I2", self:read_bytes(2))
+	return struct.unpack(">H", self:read_bytes(2))
 end
 
 function KaitaiStream:read_u4be()
-	return struct.unpack(">I4", self:read_bytes(4))
+	return struct.unpack(">I", self:read_bytes(4))
 end
 
 function KaitaiStream:read_u8be()
-	return struct.unpack(">I8", self:read_bytes(8))
+	return struct.unpack(">L", self:read_bytes(8))
 end
 
 --.............................................................................
@@ -139,15 +139,15 @@ end
 --.............................................................................
 
 function KaitaiStream:read_u2le()
-	return struct.unpack("<I2", self:read_bytes(2))
+	return struct.unpack("<H", self:read_bytes(2))
 end
 
 function KaitaiStream:read_u4le()
-	return struct.unpack("<I4", self:read_bytes(4))
+	return struct.unpack("<I", self:read_bytes(4))
 end
 
 function KaitaiStream:read_u8le()
-	return struct.unpack("<I8", self:read_bytes(8))
+	return struct.unpack("<L", self:read_bytes(8))
 end
 
 --=============================================================================
