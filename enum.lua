@@ -43,4 +43,32 @@ function enum.Enum(t)
 	})
 end
 
+--[[
+    There are often times when we want to parse something as a bitfield. We
+    can accomplish this by representing our bitfield as an enum and using
+    this helper function to extract the entries.
+
+    By default, we return the result as an array of only the bitfield flags that
+    were determined to be present. If the `asTable` argument is set to true, we
+    return a table mapping bitfield flag to a boolean value determining if the
+    flag was set.
+]]
+function enum.parseFlags(data, bitfieldEnum, asTable)
+	local asTable = asTable or false
+	local parsedFlags = {}
+
+	for flag, bitfield in pairs(bitfieldEnum) do
+		local present = bit.band(data, bitfield) ~= 0
+		if asTable and present then
+			parsedFlags[flag] = true
+		elseif asTable then
+			parsedFlags[flag] = false
+		elseif present then
+			table.insert(parsedFlags, flag)
+		end
+	end
+
+	return parsedFlags
+end
+
 return enum
