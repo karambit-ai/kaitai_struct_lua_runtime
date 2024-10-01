@@ -269,11 +269,13 @@ end
 -- Byte arrays
 --=============================================================================
 
-function KaitaiStream:read_bytes(n)
+function KaitaiStream:read_bytes_any(n)
 	local r = self._io:read(n)
-	if r == nil then
-		r = ""
-	end
+	return r ~= nil and r or ""
+end
+
+function KaitaiStream:read_bytes(n)
+	r = self:read_bytes_any(n)
 
 	if #r < n then
 		error("requested " .. n .. " bytes, but only " .. #r .. " bytes available")
