@@ -54,7 +54,7 @@ end
     flag was set.
 ]]
 function enum.parseFlags(data, bitfieldEnum, asTable)
-	local asTable = asTable or false
+	asTable = asTable or false
 	local parsedFlags = {}
 
 	for flag, bitfield in pairs(bitfieldEnum) do

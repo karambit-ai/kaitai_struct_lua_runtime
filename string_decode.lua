@@ -48,12 +48,28 @@ function stringdecode.decode(str, encoding)
 	if enc == "ascii" then
 		return str
 	elseif enc == "utf-8" then
-		local code_points = utf8_to_32(str)
-
-		return utf8.char(unpack(code_points))
+		local ok, code_points = pcall(utf8_to_32, str)
+		if ok then
+			return utf8.char(unpack(code_points))
+		end
+		-- NB: As a fallback, just return the string.
+		return stringdecode.printableWithHex(str)
 	else
 		error("Encoding " .. encoding .. " not supported")
 	end
+end
+
+function stringdecode.printableWithHex(str)
+	local result = {}
+	for i = 1, #str do
+		local byte = string.byte(str, i)
+		if byte >= 32 and byte <= 126 then
+			table.insert(result, string.char(byte))
+		else
+			table.insert(result, string.format("\\x%02x", byte))
+		end
+	end
+	return table.concat(result)
 end
 
 return stringdecode
