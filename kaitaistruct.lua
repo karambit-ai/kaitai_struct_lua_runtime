@@ -275,7 +275,7 @@ function KaitaiStream:read_bytes_any(n)
 end
 
 function KaitaiStream:read_bytes(n)
-	r = self:read_bytes_any(n)
+	local r = self:read_bytes_any(n)
 
 	if #r < n then
 		error("requested " .. n .. " bytes, but only " .. #r .. " bytes available")
